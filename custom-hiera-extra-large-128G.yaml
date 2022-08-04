@@ -1,0 +1,71 @@
+# Tuning suitable for a Satellite with 128G of RAM and 32 CPUs
+# For "typical" use cases, this Satellite size is expected
+# to be able to serve up to 60,000 hosts.
+#
+# Instructions for use:
+# 1) Copy this file to /etc/foreman-installer/custom-hiera.yaml
+# 2) run 'satellite-installer' with no arguments to apply these settings
+
+# Note:  The passenger component was replaced by puma in Satellite 6.9.
+apache::mod::passenger::passenger_max_pool_size: 120
+apache::mod::passenger::passenger_max_request_queue_size: 1000
+apache::mod::passenger::passenger_max_requests: 1000
+
+apache::mod::prefork::serverlimit: 1024
+apache::mod::prefork::maxclients: 1024
+apache::mod::prefork::maxrequestsperchild: 4000
+
+# Note:  The qpidd and qdrouterd components were deprecated in Satellite 6.10.
+qpid::open_file_limit: 65536
+qpid::router::open_file_limit: 150100
+
+candlepin::java_opts: "-Xms1024m -Xmx8192m"
+
+postgresql::server::config_entries:
+  max_connections: 1000
+  shared_buffers: 16GB
+  work_mem: 8MB
+  effective_cache_size: 32GB
+  autovacuum_vacuum_cost_limit: 2000
+  # checkpoint_segments: 32     # incompatible with Satellite 6.8 and above
+  checkpoint_completion_target: 0.9
+  log_min_duration_statement: 500
+
+# Note:  mongodb was removed in Satellite 6.10.
+mongodb::server::config_data:
+  operationProfiling.slowOpThresholdMs: 500
+  # storage.wiredTiger.engineConfig.cacheSizeGB: 26
+        # the cacheSizeGB parameter is only applicable to Satellite 7.1 and earlier
+        # the cacheSizeGB parameter should be set to 20% of physical RAM
+
+# Note:  The number of pulp workers should be equal to the number of CPUs the Satellite 
+# server has, or the number 8, whichever is lower.
+pulp::num_workers: 8
+
+puppet::server::puppetserver::jvm_min_heap_size: 4096M
+puppet::server::puppetserver::jvm_max_heap_size: 4096M
+
+# Manual configurations recommended:
+#
+# 1) General performance and throughput can be increased at scale when you add an
+# additional dynflow_executor process This is not managed yet by
+# satellite-installer, see: https://bugzilla.redhat.com/show_bug.cgi?id=1692535
+#
+# Recommended settings:
+# 65G-128G RAM or more: 3
+#
+# Edit: /etc/sysconfig/dynflowd
+# EXECUTORS_COUNT=2
+# MALLOC_ARENA_MAX=2
+#
+# These changes require a restart of 'foreman-tasks' service.
+#
+# 2) Set max open files for httpd. The installer does not yet provide tuning for this
+#    see : https://bugzilla.redhat.com/show_bug.cgi?id=1728420
+#
+#  mkdir -p  /etc/systemd/system/httpd.service.d/
+#  echo "[Service]" >> /etc/systemd/system/httpd.service.d/limits.conf
+#  echo "LimitNOFILE=640000" >> /etc/systemd/system/httpd.service.d/limits.conf
+#  systemctl daemon-reload
+#  foreman-maintain service restart
+#
