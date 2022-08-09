@@ -16,7 +16,7 @@ apache::mod::prefork::maxclients: 1024
 apache::mod::prefork::maxrequestsperchild: 4000
 
 # Note:  The qpidd and qdrouterd components were deprecated in Satellite 6.10.
-qpid::open_file_limit: 30100
+qpid::open_file_limit: 65536
 qpid::router::open_file_limit: 150100
 
 postgresql::server::config_entries:
