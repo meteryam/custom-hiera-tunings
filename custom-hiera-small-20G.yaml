@@ -38,7 +38,7 @@ postgresql::server::config_entries:
 # Note:  mongodb was removed in Satellite 6.10.
 mongodb::server::config_data:
   operationProfiling.slowOpThresholdMs: 500
-  # storage.wiredTiger.engineConfig.cacheSizeGB: 6	# only applicable to Satellite 7.1 and earlier
+ # storage.wiredTiger.engineConfig.cacheSizeGB: 4	# only applicable to Satellite 7.1 and earlier
 
 # Note:  The number of pulp workers should be equal to the number of CPUs the Satellite
 # server has, or the number 8, whichever is lower.
