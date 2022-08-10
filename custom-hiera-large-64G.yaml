@@ -33,7 +33,7 @@ postgresql::server::config_entries:
 mongodb::server::config_data:
   operationProfiling.slowOpThresholdMs: 500
   # storage.wiredTiger.engineConfig.cacheSizeGB: 13
-	# the cacheSizeGB parameter is only applicable to Satellite 7.1 and earlier
+	# the cacheSizeGB parameter is only applicable to Satellite 6.7.1 and earlier
 	# the cacheSizeGB parameter should be set to 20% of physical RAM
 
 # Note:  The number of pulp workers should be equal to the number of CPUs the Satellite 
