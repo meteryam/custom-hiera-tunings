@@ -24,8 +24,8 @@ postgresql::server::config_entries:
   shared_buffers: 8GB
   effective_cache_size: 16GB
   autovacuum_vacuum_cost_limit: 2000
-  # checkpoint_segments: 32     # incompatible with Satellite 6.8 and above
   work_mem: 4MB
+  # checkpoint_segments: 32     # incompatible with Satellite 6.8 and above
   checkpoint_completion_target: 0.9
   log_min_duration_statement: 500
 
