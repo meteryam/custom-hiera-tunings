@@ -50,7 +50,7 @@ puppet::server::puppetserver::jvm_max_heap_size: 4096M
 #
 # Puma configuration:
 #
-# satellite-installer --foreman-foreman-service-puma-workers=8 \
+# satellite-installer --foreman-foreman-service-puma-workers=16 \
 # --foreman-foreman-service-puma-threads-min=16 \
 # --foreman-foreman-service-puma-threads-max=16
 #
