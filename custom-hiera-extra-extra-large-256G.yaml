@@ -20,8 +20,8 @@ apache::mod::prefork::maxrequestsperchild: 4000
   # qpid::open_file_limit should be set to (N * 3) + 100, where N is the number of hosts
   # qpid::router::open_file_limit should be set to (N * 4) + 500, where N is the number of hosts
   
-qpid::open_file_limit: 180100
-qpid::router::open_file_limit: 240500
+qpid::open_file_limit: 240500
+qpid::router::open_file_limit: 180100
 
 candlepin::java_opts: "-Xms8192m -Xmx8192m"
 
