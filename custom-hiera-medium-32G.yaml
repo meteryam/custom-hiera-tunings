@@ -79,7 +79,7 @@ puppet::server::puppetserver::jvm_max_heap_size: 4096M
 # systemctl enable --now dynflow-sidekiq@worker-{1,2}
 #
 # for 6.10 or newer:
-# satellite-installer --foreman-dynflow-worker-instances 3 optionally, add --foreman-dynflow-worker-concurrency 5
+# satellite-installer --foreman-dynflow-worker-instances 3 --foreman-dynflow-worker-concurrency 5
 #
 # Set max open files for httpd. The installer does not yet provide tuning for this
 #    see : https://bugzilla.redhat.com/show_bug.cgi?id=1728420
