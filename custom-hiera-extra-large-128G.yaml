@@ -71,6 +71,18 @@ puppet::server::puppetserver::jvm_max_heap_size: 4096M
 #
 # These changes require a restart of 'foreman-tasks' service.
 #
+# for 6.8 and 6.9:
+# change concurrency parameter to 5 in /etc/foreman/dynflow/worker.yml
+# run these commands:
+#
+# cd /etc/foreman/dynflow
+# ln -s worker.yml worker-1.yml
+# ln -s worker.yml worker-2.yml
+# systemctl enable --now dynflow-sidekiq@worker-{1,2}
+#
+# for 6.10 or newer:
+# satellite-installer --foreman-dynflow-worker-instances 3 --foreman-dynflow-worker-concurrency 5
+#
 # 2) Set max open files for httpd. The installer does not yet provide tuning for this
 #    see : https://bugzilla.redhat.com/show_bug.cgi?id=1728420
 #
