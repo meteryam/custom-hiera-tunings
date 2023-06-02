@@ -47,6 +47,13 @@ pulp::num_workers: 4
 
 # Manual configurations recommended:
 #
+# for satellite 6.10+:
+# hammer settings set --name bulk_load_size --value 250
+# hammer settings set --name foreman_tasks_polling_multiplier --value 10
+#
+# for satellite 6.11+:
+# sudo -u pulp PULP_SETTINGS='/etc/pulp/settings.py' /usr/bin/pulpcore-manager rpm-trim-changelogs
+#
 # Puma configuration:
 #
 # satellite-installer --foreman-foreman-service-puma-workers=4 \
