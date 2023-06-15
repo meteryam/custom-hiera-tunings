@@ -46,6 +46,11 @@ puppet::server::puppetserver::jvm_max_heap_size: 4096M
 
 # Manual configurations recommended:
 #
+# for satellite 6.9+:
+# satellite-installer --foreman-db-pool=32
+#
+# See this article for more detail:  https://access.redhat.com/solutions/6964062
+#
 # for satellite 6.10+:
 # hammer settings set --name bulk_load_size --value 700
 # hammer settings set --name foreman_tasks_polling_multiplier --value 10
