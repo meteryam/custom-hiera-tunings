@@ -90,7 +90,8 @@ puppet::server::puppetserver::jvm_max_heap_size: 4096M
 # ln -s worker.yml worker-1.yml
 # ln -s worker.yml worker-2.yml
 # ln -s worker.yml worker-3.yml
-# systemctl enable --now dynflow-sidekiq@worker-{1,2,3}
+# ln -s worker.yml worker-4.yml
+# systemctl enable --now dynflow-sidekiq@worker-{1,2,3,4}
 #
 # for 6.10 or newer:
 # satellite-installer --foreman-dynflow-worker-instances 4 --foreman-dynflow-worker-concurrency 10
