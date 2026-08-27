@@ -106,3 +106,9 @@ puppet::server::puppetserver::jvm_max_heap_size: 4096M
 #  systemctl daemon-reload
 #  foreman-maintain service restart
 #
+# 3) For conditions that require more than 1900 hosts (if qpidd is installed),
+# then you need to tune the kernel:
+#
+# echo "kernel.sem= 250 256000 32 16384" > /etc/sysctl.d/01-satellite-tune.conf
+# echo "fs.aio-max-nr = 1000000" >> /etc/sysctl.d/01-satellite-tune.conf
+# sysctl -p /etc/sysctl.d/01-satellite-tune.conf
