@@ -15,6 +15,9 @@ apache::mod::prefork::serverlimit: 1024
 apache::mod::prefork::maxclients: 1024
 apache::mod::prefork::maxrequestsperchild: 4000
 
+apache::mod::event::serverlimit: 64
+apache::mod::event::maxrequestworkers: 1024
+
 # Note:  The following qpid settings were first supported in Satellite 6.4.
 # Note:  The qpidd and qdrouterd components were deprecated in Satellite 6.10.
 qpid::open_file_limit: 240500
